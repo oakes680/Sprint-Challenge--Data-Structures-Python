@@ -13,67 +13,64 @@ f.close()
 duplicates = []  # Return the list of duplicates in this data structure
 
 
+
+
 # Replace the nested for loops below with your improvements
 # for name_1 in names_1:
 #     for name_2 in names_2:
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
+
+
+
+
+### create binary tree
 class BinaryTree:
     def __init__(self, value=None):
         self.value = value
         self.left = None
-        self.right = None 
+        self.right = None
 
     def insert(self, value):
-        if self.value == None:
+        if self.value is None:
             self.value = value
-
+            
         if value < self.value:
             if self.left is None:
                 self.left = BinaryTree(value)
             else:
                 self.left.insert(value)
-        else: 
+        else:
             if self.right is None:
                 self.right = BinaryTree(value)
             else:
-                self.right.insert(value)   
-    def contains(self, target):
+                self.right.insert(value)
 
+    def contains(self, target):
         if self.value == target:
             duplicates.append(self.value)
-
+        
         if target < self.value:
             if self.left is None:
                 return False
             else:
                 return self.left.contains(target)
+
         else:
-            if target > self.value:
-                if self.right is None:
-                    return False
-                else:
-                    return self.right.contains(target) 
-
-# tree = BinaryTree()
-
-# for names in names_1:
-#     tree.insert(names)
-
-# for names in names_2:
-#     tree.contains(names)
+            #if target > self.value:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)
 
 
-names1 = list(set(names_1))
-names2 = list(set(names_2))
+newTree = BinaryTree()
+for name_1 in names_1:
+    newTree.insert(name_1)
 
-names = sorted(names1 + names2)
-
-for i in range(len(names) - 1):
-    if names[i] == names[i+1]:
-        duplicates.append(names[i])
-
+for name_2 in names_2:
+    newTree.contains(name_2)         
 
 
 
@@ -86,7 +83,14 @@ print (f"runtime: {end_time - start_time} seconds")
 # What's the best time you can accomplish?  Thare are no restrictions on techniques or data
 # structures, but you may not import any additional libraries that you did not write yourself.
 
+# names1 = list(set(names_1))
+# names2 = list(set(names_2))
 
+# names = sorted(names1 + names2)
+
+# for i in range(len(names) - 1):
+#     if names[i] == names[i+1]:
+#         duplicates.append(names[i])
 
 
 
