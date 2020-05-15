@@ -15,9 +15,7 @@ class RingBuffer:
 
         else:
             if self.nextToBeRemoved == self.storage.head:
-                # current_head = self.storage.head
                 self.storage.head.value = item
-                # current_head.value = item
                 self.nextToBeRemoved = self.storage.head.next
             
             elif self.nextToBeRemoved == self.storage.tail:
@@ -26,7 +24,6 @@ class RingBuffer:
                 self.nextToBeRemoved = self.storage.head
 
             else:
-                ### we need to get access to the node before the value
                 self.nextToBeRemoved.value = item
                 self.nextToBeRemoved = self.nextToBeRemoved.next
                 
